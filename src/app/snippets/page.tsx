@@ -1,29 +1,9 @@
 import { CustomLink } from "../../components/CustomLink";
-
-const snippets = [
-  {
-    id: 1,
-    title: "Function to Add two numbers",
-    content: "function add(a, b) { return a + b; }",
-  },
-  {
-    id: 2,
-    title: "Function to Subtract two numbers",
-    content: "function subtract(a, b) { return a - b; }",
-  },
-  {
-    id: 3,
-    title: "Function to Multiply two numbers",
-    content: "function multiply(a, b) { return a * b; }",
-  },
-  {
-    id: 4,
-    title: "Function to Divide two numbers",
-    content: "function divide(a, b) { return a / b; }",
-  },
-];
+import backendService from "../../services/backend";
 
 export default async function SnippetsPage() {
+  const snippets = await backendService.snippet.findAll();
+
   return (
     <div className="h-screen">
       <div className="py-12 px-12 flex justify-between items-center">
