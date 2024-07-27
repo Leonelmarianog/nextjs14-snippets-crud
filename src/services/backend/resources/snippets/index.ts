@@ -12,8 +12,21 @@ const findAll = async (): Promise<Snippet[]> => {
   );
 };
 
+const findById = async (id: number | string): Promise<Snippet | null> => {
+  try {
+    const { data: rawSnippet } = await backendClient.get<IRawSnippet>(
+      `/snippet/${id}`
+    );
+
+    return new Snippet({ ...rawSnippet, id: parseInt(rawSnippet.id) });
+  } catch (_) {
+    return null;
+  }
+};
+
 const snippetService = {
   findAll,
+  findById,
 };
 
 export default snippetService;
