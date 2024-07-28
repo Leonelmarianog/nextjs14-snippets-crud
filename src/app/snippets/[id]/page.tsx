@@ -21,7 +21,7 @@ export default async function SnippetDetails({
     <div className="h-screen">
       <div className="flex flex-col gap-12 p-6 md:p-24">
         <div className="flex flex-col gap-6 md:flex-row md:justify-between md:items-center">
-          <p className="text-white">{snippet.title}</p>
+          <h1 className="text-white">{snippet.title}</h1>
 
           <div className="flex flex-col gap-2 md:flex-row">
             <CustomLink href="#" text="Update" />
