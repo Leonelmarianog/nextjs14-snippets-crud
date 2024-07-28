@@ -1,5 +1,6 @@
 import { Snippet } from "../../../../entities/Snippet";
 import backendClient from "../../config";
+import { ICreateSnippetDto } from "./ICreateSnippetDto";
 import { IRawSnippet } from "./IRawSnippet";
 
 const findAll = async (): Promise<Snippet[]> => {
@@ -24,9 +25,18 @@ const findById = async (id: number | string): Promise<Snippet | null> => {
   }
 };
 
+const create = async (createSnippetDto: ICreateSnippetDto) => {
+  const { data: rawSnippet } = await backendClient.post(
+    "/snippet",
+    createSnippetDto
+  );
+  return new Snippet({ ...rawSnippet, id: parseInt(rawSnippet.id) });
+};
+
 const snippetService = {
   findAll,
   findById,
+  create,
 };
 
 export default snippetService;
