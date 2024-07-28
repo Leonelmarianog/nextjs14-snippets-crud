@@ -3,18 +3,24 @@
 import { Editor } from "@monaco-editor/react";
 import { useState } from "react";
 import * as actions from "../actions";
+import { useFormState } from "react-dom";
 
 export const CreateSnippetForm = () => {
   const [code, setCode] = useState("// Write your code here...");
+
+  const [formState, action] = useFormState(
+    actions.createSnippet.bind(null, code),
+    {
+      message: "",
+    }
+  );
 
   const handleEditorChange = (value: string = ""): void => {
     setCode(value);
   };
 
-  const createSnippetAction = actions.createSnippet.bind(null, code);
-
   return (
-    <form className="flex flex-col gap-12" action={createSnippetAction}>
+    <form className="flex flex-col gap-12" action={action}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
           <label htmlFor="title" className="text-white">
@@ -44,6 +50,8 @@ export const CreateSnippetForm = () => {
             />
           </div>
         </div>
+
+        <p className="text-red-500">{formState.message}</p>
       </div>
 
       <button type="submit" className="text-white text-xl bold">
