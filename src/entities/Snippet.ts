@@ -1,5 +1,5 @@
 export class Snippet {
-  readonly id: number;
+  readonly id: string;
   readonly title: string;
   readonly content: string;
 
@@ -8,7 +8,7 @@ export class Snippet {
     title,
     content,
   }: {
-    id: number;
+    id: string;
     title: string;
     content: string;
   }) {

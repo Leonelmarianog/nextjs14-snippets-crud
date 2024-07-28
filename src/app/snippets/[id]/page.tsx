@@ -11,7 +11,7 @@ interface ISnippetDetailsProps {
 export default async function SnippetDetails({
   params,
 }: Readonly<ISnippetDetailsProps>) {
-  const snippet = await backendService.snippet.findById(parseInt(params.id));
+  const snippet = await backendService.snippet.findById(params.id);
 
   if (!snippet) {
     return notFound();

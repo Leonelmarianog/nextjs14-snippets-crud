@@ -8,7 +8,7 @@ const findAll = async (): Promise<Snippet[]> => {
   );
 
   return rawSnippets.map(
-    (rawSnippet) => new Snippet({ ...rawSnippet, id: parseInt(rawSnippet.id) })
+    (rawSnippet) => new Snippet({ ...rawSnippet, id: rawSnippet.id })
   );
 };
 
@@ -18,7 +18,7 @@ const findById = async (id: number | string): Promise<Snippet | null> => {
       `/snippet/${id}`
     );
 
-    return new Snippet({ ...rawSnippet, id: parseInt(rawSnippet.id) });
+    return new Snippet({ ...rawSnippet, id: rawSnippet.id });
   } catch (_) {
     return null;
   }
